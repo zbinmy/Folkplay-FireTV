@@ -1,31 +1,28 @@
-# Folkplay TV (independent reconstruction)
+# Folkplay Arcade TV
 
-An independent Android TV / Amazon Fire TV starter app based on inspection of the supplied Folkplay 1.0.0 split-APK package. This repository does **not** contain Folkplay's original source code and is not an official build.
+An independent Android TV / Amazon Fire TV arcade project. It is not the original Folkplay source code or an official build.
 
-## Current scope
-
-- Native Android application, package `com.zbinmy.folkplaytv` (does not overwrite the original app).
-- TV launcher entry (`LEANBACK_LAUNCHER`), landscape layout, touchscreen not required.
-- D-pad navigation and OK/Enter selection; Back exits a game; Menu resets a game.
-- Playable local two-player Tic Tac Toe.
-- Other catalogue entries are explicitly marked as not implemented. The catalogue is a small starter sample, not a full recreation of the original app's route inventory.
+## Current build
+- 40-game catalogue with a TV-friendly scrollable menu.
+- Landscape presentation; touchscreen is optional.
+- D-pad navigation, OK/Enter action, Back to menu, Menu/Start to restart.
+- Existing two-player Tic-Tac-Toe retained.
+- Arcade prototypes include board, tile, reflex, memory, number and score-challenge modes. Some catalogue entries currently share prototype mechanics and are not yet complete faithful implementations of their named games.
 
 ## Build
+GitHub Actions builds a debug APK on pushes to main and uploads `folkplay-tv-debug-apk`.
 
-GitHub Actions builds a debug APK on pushes to `main` and uploads it as `folkplay-tv-debug-apk`. Open the repository's Actions tab, select the latest successful run, and download the artifact.
+1. Open the repository Actions tab.
+2. Select the latest successful Android TV build.
+3. Download the `folkplay-tv-debug-apk` artifact.
 
-Local build prerequisites: JDK 17, Android SDK Platform 35, Build Tools 35.0.0, and Gradle 8.9.
+Local build prerequisites: JDK 17, Android SDK Platform 35, Build Tools 35.0.0, Gradle 8.11.
 
 ```bash
-gradle --no-daemon assembleDebug
+gradle --no-daemon clean assembleDebug
 ```
 
 APK output: `app/build/outputs/apk/debug/app-debug.apk`.
 
-## Fire TV notes
-
-Install the debug APK for testing with ADB. This is not yet hardware-certified. Validate focus movement, remote key mapping, overscan/safe area, suspend/resume, and playback behaviour on the target Fire TV model before release. The app requests no network permissions and currently has no online services.
-
-## Reference package
-
-The supplied `Folkplay_v1.0.0(10).apks` archive identifies the original package as `com.mcs2k8.folkplay`, version 1.0.0 (version code 10), with split APKs. A compiled APK bundle is not equivalent to the original editable project: original JS/TS source, build configuration, signing keys, and service credentials are not included.
+## Fire TV validation
+The project is remote-first and requests no network permissions. Test D-pad focus, game controls, Back/Menu behaviour, safe areas, suspend/resume and performance on the target Fire TV device. A successful CI build does not establish full gameplay correctness or hardware certification.
