@@ -19,6 +19,6 @@ class MainActivity:Activity(){
  ArcadeCatalog.games.forEachIndexed{index,g->val t=TextView(this).apply{text=(index+1).toString()+".  "+g.name+"   ·   "+g.genre;textSize=17f;gravity=Gravity.CENTER_VERTICAL;setTextColor(Color.WHITE);setPadding(14,0,8,0);isFocusable=true;isFocusableInTouchMode=true;setBackgroundColor(Color.rgb(27,40,54));setOnFocusChangeListener{v,f->v.setBackgroundColor(if(f)Color.rgb(45,91,84)else Color.rgb(27,40,54))};setOnClickListener{launch(index)}}
  val lp=LinearLayout.LayoutParams(-1,45);lp.bottomMargin=4;list.addView(t,lp);items.add(t)}
  val scroll=ScrollView(this).apply{isFillViewport=false;addView(list)};root.addView(scroll,LinearLayout.LayoutParams(-1,0,1f));setContentView(root);items[0].post{items[0].requestFocus()}}
- private fun launch(i:Int){if(i==0)startActivity(Intent(this,GameActivity::class.java))else startActivity(Intent(this,ArcadeActivity::class.java).putExtra("game_index",i))}
+ private fun launch(i:Int){startActivity(Intent(this,ArcadeActivity::class.java).putExtra("game_index",i))}
  override fun onKeyDown(k:Int,e:KeyEvent?):Boolean{if(k==KeyEvent.KEYCODE_DPAD_DOWN||k==KeyEvent.KEYCODE_DPAD_UP){selected=(selected+if(k==KeyEvent.KEYCODE_DPAD_DOWN)1 else -1).coerceIn(0,items.lastIndex);items[selected].requestFocus();return true};if(k==KeyEvent.KEYCODE_DPAD_CENTER||k==KeyEvent.KEYCODE_ENTER){launch(selected);return true};return super.onKeyDown(k,e)}
 }
