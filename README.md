@@ -7,7 +7,7 @@ An independent Android TV / Amazon Fire TV starter app based on inspection of th
 - Native Android application, package `com.zbinmy.folkplaytv` (does not overwrite the original app).
 - TV launcher entry (`LEANBACK_LAUNCHER`), landscape layout, touchscreen not required.
 - D-pad navigation and OK/Enter selection; Back exits a game; Menu resets a game.
-- Playable local two-player Tic Tac Toe and Connect Four.
+- Playable local two-player Tic Tac Toe.
 - Other catalogue entries are explicitly marked as not implemented. The catalogue is a small starter sample, not a full recreation of the original app's route inventory.
 
 ## Build
