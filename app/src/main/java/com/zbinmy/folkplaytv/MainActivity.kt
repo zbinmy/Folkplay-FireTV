@@ -67,7 +67,7 @@ class GameActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.decorView.systemUiVisibility = 5894
-        board = TicTacToeView()
+        board = TicTacToeView(this)
         setContentView(board)
         board.requestFocus()
     }
@@ -78,15 +78,13 @@ class GameActivity : Activity() {
     }
 }
 
-private class TicTacToeView : View(null) {
+private class TicTacToeView(context: android.content.Context) : View(context) {
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val cells = IntArray(9)
     private var cursor = 4
     private var player = 1
     private var finished = false
     private var status = "Player 1's turn"
-    constructor() : this(android.app.Activity()) 
-    constructor(context: android.content.Context) : super(context)
     fun reset() { cells.fill(0); cursor = 4; player = 1; finished = false; status = "Player 1's turn"; invalidate() }
     fun move(key: Int): Boolean {
         when (key) {
